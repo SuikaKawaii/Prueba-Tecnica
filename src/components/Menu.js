@@ -10,7 +10,10 @@ const Menu = () => {
 
   const dispatch = useDispatch();
   const [check, setCheck] = useState(true)
-  const [val, setVal] = useState({})
+  const [val, setVal] = useState({
+    price: '',
+    items: ''
+  })
 
   const {ingredients} = useSelector(store => store.ingredients)
   const {price} = useSelector(store => store.ingredients)
@@ -31,8 +34,8 @@ const Menu = () => {
         ...val,
         [target.name]: target.value
       })
-      // dispatch(addSyn(val))
-      dispatch(sumaSyn(val))
+      dispatch(addSyn(val))
+      dispatch(sumaSyn(val.items + 1))
     }else{
       setCheck(true)
       
@@ -73,8 +76,13 @@ const Menu = () => {
                       name='check' 
                       value={i.price} 
                     />
-                    <Items placeholder={i.items}/>                    
-                    <NameIngredient>{i.product}</NameIngredient>
+                    <Items placeholder={i.items}
+                      name= 'items'
+                      value={i.items}
+                    />                    
+                    <NameIngredient>
+                      {i.product}
+                    </NameIngredient>
                     <Brand>{i.brand}</Brand>
                     <Quantity>{i.quantity}</Quantity>                    
                     <Price>{i.price}</Price>                

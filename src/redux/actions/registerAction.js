@@ -10,10 +10,10 @@ export const registroEmailPasswordNombre = (email,password,name) => {
            await updateProfile(auth.currentUser, {displayName: name})
 
            dispatch(registerSincrono(user.email,user.uid,user.displayName))
-            
+            console.log(user);
         })
         .catch(e =>{
-            //console.log(e);
+            console.log(e);
         })
     }
 }

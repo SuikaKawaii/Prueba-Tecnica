@@ -55,7 +55,7 @@ export const Register = () => {
                         <Form.Control
                             type="password"
                             placeholder="Password"
-                            name="pass1"
+                            name="pass"
                             // value={pass}
                             onChange={handleInputChange}
                         />

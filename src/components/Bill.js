@@ -23,6 +23,17 @@ const Bill = () => {
   return (
     <div>
         <Div>
+          {
+            ingredients.forEach((i, index) => (
+              <div key={index}>
+                <Item>Items: <B>{i.items+1}</B></Item>
+            <Subtotal>Subtotal <Span>{i.price} €</Span></Subtotal>
+            <Envio>Gastos de envío <Span>7.00 €</Span></Envio>
+            <Total>Total <Span> €</Span></Total>
+            <Comprar type='button'>Compra ingredientes: 52364 €</Comprar>
+              </div>
+            ))
+          }
             <Item>Items: <B>1</B></Item>
             <Subtotal>Subtotal <Span> €</Span></Subtotal>
             <Envio>Gastos de envío <Span> €</Span></Envio>
