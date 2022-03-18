@@ -1,6 +1,6 @@
 <h1>Mood app</h1>
 <hr/>
-<p class='text-blue'>Aplicación desarrollada con ReactJs, Redux y maneo de autenticación en Firebase.</p>
+<p class='text-blue'>Aplicación desarrollada con ReactJs, Redux y manejo de autenticación en Firebase.</p>
 
 <h4>Set up</h4>
 <hr/>
