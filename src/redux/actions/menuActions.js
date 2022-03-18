@@ -4,11 +4,11 @@ import { db } from "../../firebase/firebaseConfig";
 import { typesRisotto } from "../types/types";
 
 //------------Asincrono---------
-export const addAsyn = (precio) => {
+export const addAsyn = (val) => {
     return (dispatch) => {
-        addDoc(collection(db, 'contador'), precio)
+        addDoc(collection(db,'bill'), val)
         .then(resp => {
-            dispatch(addAsyn(precio))
+            dispatch(addAsyn(val))
             dispatch(listAsyn())
         }).catch(error => {
             console.log(error);
@@ -39,10 +39,10 @@ export const deleteAsyn = (codigo) => {
     }
 }
 //------------Sincrono------------
-export const addSyn = (precio) => {
+export const addSyn = (val) => {
     return{
         type: typesRisotto.add,
-        payload: precio
+        payload: val
     }
 }
 export const editSyn = (ingredient) => {

@@ -1,4 +1,5 @@
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth"
+import Swal from "sweetalert2";
 import { facebook, google } from "../../firebase/firebaseConfig";
 import { types } from "../types/types"
 
@@ -39,6 +40,12 @@ export const loginAsyn = (email, password) => {
             console.log(`Bienvenido ${user.displayName}`);
         }).catch(error => {
             console.log('El usuario no existe');
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Usuario no registrado o datos erróneos!',
+                
+              })
         })
     }
 }

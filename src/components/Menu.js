@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addAsyn, addSyn, listAsyn, sumaSyn } from '../redux/actions/menuActions';
+
 import { A, Brand, Check, DivA, DivCard, DivIngredients, DivSelect, Items, Logout, NameIngredient, Price, Quantity, Rissoto, Title } from '../styled/MenuStyled'
 import Bill from './Bill';
 import {BiLogOut} from 'react-icons/bi'
 import { logoutAsyn } from '../redux/actions/loginAction';
+import { listAsyn } from '../redux/actions/menuActions';
+import { addAsyn, deleteAsyn } from '../redux/actions/billAction';
+import { decrementSyn, incrementSyn } from '../redux/actions/countAction';
 
 const Menu = () => {
 
   const dispatch = useDispatch();
-  const [check, setCheck] = useState(true)
+  const [check, setCheck] = useState(false)
   const [val, setVal] = useState({
-    price: '',
+    check: '',
     items: ''
   })
 
   const {ingredients} = useSelector(store => store.ingredients)
-  const {price} = useSelector(store => store.ingredients)
-  console.log((ingredients));
+
   
   const Listar = () => {
     dispatch(listAsyn())
@@ -28,19 +30,27 @@ const Menu = () => {
   const handleCheck = ({target}) => {
     console.log(target.value);
     
-    if(check === true){
-      setCheck(false)
+    if(check === false){
+      setCheck(true)
       setVal({
         ...val,
         [target.name]: target.value
       })
-      dispatch(addSyn(val))
-      dispatch(sumaSyn(val.items + 1))
-    }else{
-      setCheck(true)
+      // addPrice(val)
       
+    }else{
+      setCheck(false)
+      // deletePrice(val)
     }
     console.log(val);
+  }
+  const addPrice = (val) => {
+    dispatch(addAsyn(val))
+    dispatch(incrementSyn(val))
+  }
+  const deletePrice = (val) => {
+    dispatch(deleteAsyn(val))
+    dispatch(decrementSyn(val))
   }
   const handleLogout = () => {
     dispatch(logoutAsyn())
@@ -79,6 +89,7 @@ const Menu = () => {
                     <Items placeholder={i.items}
                       name= 'items'
                       value={i.items}
+                      onChange={handleCheck}
                     />                    
                     <NameIngredient>
                       {i.product}
@@ -91,7 +102,7 @@ const Menu = () => {
               ))
             }            
           </DivSelect>
-          <Bill/>
+          {/* <Bill/> */}
         </form>        
     </div>
   )
